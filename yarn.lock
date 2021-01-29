@@ -636,6 +636,13 @@
   dependencies:
     "@types/koa" "*"
 
+"@types/koa-router@^7.4.1":
+  version "7.4.1"
+  resolved "https://registry.npmjs.org/@types/koa-router/-/koa-router-7.4.1.tgz#3702a4cabe4558cc4eec70d5574acc04beecff7c"
+  integrity sha512-Hg78TXz78QYfEgdq3nTeRmQFEwJKZljsXb/DhtexmyrpRDRnl59oMglh9uPj3/WgKor0woANrYTnxA8gaWGK2A==
+  dependencies:
+    "@types/koa" "*"
+
 "@types/koa@*", "@types/koa@^2.11.7":
   version "2.11.7"
   resolved "https://registry.npmjs.org/@types/koa/-/koa-2.11.7.tgz#3b38f3b9faa66315a84890a771d166fb36463100"
@@ -2004,7 +2011,7 @@ http-cache-semantics@^4.0.0:
   resolved "https://registry.npmjs.org/http-cache-semantics/-/http-cache-semantics-4.1.0.tgz#49e91c5cbf36c9b94bcfcd71c23d5249ec74e390"
   integrity sha512-carPklcUh7ROWRK7Cv27RPtdhYhUsela/ue5/jKzjegVvXDqM2ILE9Q2BGn9JZJh1g87cp56su/FgQSzcWS8cQ==
 
-http-errors@^1.6.3:
+http-errors@^1.6.3, http-errors@^1.7.3:
   version "1.8.0"
   resolved "https://registry.npmjs.org/http-errors/-/http-errors-1.8.0.tgz#75d1bbe497e1044f51e4ee9e704a62f28d336507"
   integrity sha512-4I8r0C5JDhT5VkvI47QktDW75rNlGVsUf/8hzjCC/wkWI/jdTRmBb9aI7erSG82r1bjKY3F6k28WnsVxB1C73A==
@@ -2904,6 +2911,17 @@ koa-convert@^1.2.0:
     co "^4.6.0"
     koa-compose "^3.0.0"
 
+koa-router@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.npmjs.org/koa-router/-/koa-router-10.0.0.tgz#7bc76a031085731e61fc92c1683687b2f44de6a4"
+  integrity sha512-gAE5J1gBQTvfR8rMMtMUkE26+1MbO3DGpGmvfmM2pR9Z7w2VIb2Ecqeal98yVO7+4ltffby7gWOzpCmdNOQe0w==
+  dependencies:
+    debug "^4.1.1"
+    http-errors "^1.7.3"
+    koa-compose "^4.1.0"
+    methods "^1.1.2"
+    path-to-regexp "^6.1.0"
+
 koa@^2.13.1:
   version "2.13.1"
   resolved "https://registry.npmjs.org/koa/-/koa-2.13.1.tgz#6275172875b27bcfe1d454356a5b6b9f5a9b1051"
@@ -3037,6 +3055,11 @@ merge-stream@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/merge-stream/-/merge-stream-2.0.0.tgz#52823629a14dd00c9770fb6ad47dc6310f2c1f60"
   integrity sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==
+
+methods@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
+  integrity sha1-VSmk1nZUE07cxSZmVoNbD4Ua/O4=
 
 micromatch@^3.1.4:
   version "3.1.10"
@@ -3409,6 +3432,11 @@ path-parse@^1.0.6:
   version "1.0.6"
   resolved "https://registry.npmjs.org/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
   integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
+
+path-to-regexp@^6.1.0:
+  version "6.2.0"
+  resolved "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-6.2.0.tgz#f7b3803336104c346889adece614669230645f38"
+  integrity sha512-f66KywYG6+43afgE/8j/GoiNyygk/bnoCbps++3ErRKsIYkGGupyv07R2Ok5m9i67Iqc+T2g1eAUGUPzWhYTyg==
 
 performance-now@^2.1.0:
   version "2.1.0"

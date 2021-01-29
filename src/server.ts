@@ -1,17 +1,26 @@
 import Koa from "koa";
+import Router from "koa-router";
 const app = new Koa();
+const router = new Router();
+const usersRouter = new Router({ prefix: "/users" });
 
-app.use(async (ctx: any, next: Koa.Next) => {
-  if (ctx.url === "/") {
-    ctx.body = "this is homepage";
-  } else if (ctx.url === "/users") {
-    ctx.body = "this is user page";
-  } else if (ctx.url.match(/\/users\/\w+/)) {
-    const userId = ctx.url.match(/\/users\/(\w+)/)[1];
-    ctx.body = `this is user ${userId}`;
-  } else {
-    ctx.status = 404;
-  }
+router.get("/", (ctx: any) => {
+  ctx.body = "Homepage";
 });
+
+usersRouter.get("/", (ctx: any) => {
+  ctx.body = "User lists";
+});
+
+usersRouter.post("/", (ctx: any) => {
+  ctx.body = "Create user";
+});
+
+usersRouter.get("/:id", (ctx) => {
+  ctx.body = `This is user ${ctx.params.id}`;
+});
+
+app.use(router.routes());
+app.use(usersRouter.routes());
 
 app.listen(3333);
