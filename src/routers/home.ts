@@ -1,8 +1,7 @@
 import Router from "koa-router";
 const router = new Router();
+import HomeController from "../controllers/home";
 
-router.get("/", (ctx: any) => {
-  ctx.body = "<h1>Homepage</h1>";
-});
+router.get("/", HomeController.index);
 
 module.exports = router;
