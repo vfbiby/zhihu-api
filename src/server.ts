@@ -4,19 +4,26 @@ const app = new Koa();
 const router = new Router();
 const usersRouter = new Router({ prefix: "/users" });
 
+const auth = async (ctx: any, next: Koa.Next) => {
+  if (ctx.url !== "/users") {
+    ctx.throw(401);
+  }
+  await next();
+};
+
 router.get("/", (ctx: any) => {
   ctx.body = "Homepage";
 });
 
-usersRouter.get("/", (ctx: any) => {
+usersRouter.get("/", auth, (ctx: any) => {
   ctx.body = "User lists";
 });
 
-usersRouter.post("/", (ctx: any) => {
+usersRouter.post("/", auth, (ctx: any) => {
   ctx.body = "Create user";
 });
 
-usersRouter.get("/:id", (ctx) => {
+usersRouter.get("/:id", auth, (ctx) => {
   ctx.body = `This is user ${ctx.params.id}`;
 });
 
