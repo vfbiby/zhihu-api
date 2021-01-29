@@ -1,30 +1,12 @@
 import Router from "koa-router";
+import UsersController from "../controllers/UsersController";
 const router = new Router({ prefix: "/users" });
+const { index, create, read, update, destroy } = UsersController;
 
-const db = [{ name: "Leilei" }];
-
-router.get("/", (ctx: any) => {
-  //ctx.set("Allow", "GET, POST");
-  ctx.body = db;
-});
-
-router.post("/", (ctx: any) => {
-  db.push(ctx.request.body);
-  ctx.body = ctx.request.body;
-});
-
-router.get("/:id", (ctx) => {
-  ctx.body = db[Number(ctx.params.id)];
-});
-
-router.put("/:id", (ctx) => {
-  db[Number(ctx.params.id)] = ctx.request.body;
-  ctx.body = ctx.request.body;
-});
-
-router.delete("/:id", (ctx) => {
-  db.splice(Number(ctx.params.id), 1);
-  ctx.status = 204;
-});
+router.get("/", index);
+router.post("/", create);
+router.get("/:id", read);
+router.put("/:id", update);
+router.delete("/:id", destroy);
 
 module.exports = router;
