@@ -5,7 +5,12 @@ import error from "koa-json-error";
 
 const app = new Koa();
 
-app.use(error());
+app.use(
+  error({
+    postFormat: (e, { stack, ...rest }) =>
+      process.env.NODE_ENV === "production" ? rest : { stack, ...rest },
+  })
+);
 app.use(bodyParser());
 registerRouters(app);
 
