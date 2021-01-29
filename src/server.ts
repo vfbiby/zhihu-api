@@ -1,4 +1,5 @@
 import Koa from "koa";
+import bodyParser from "koa-bodyparser";
 import Router from "koa-router";
 const app = new Koa();
 const router = new Router();
@@ -20,6 +21,7 @@ usersRouter.get("/", (ctx: any) => {
 });
 
 usersRouter.post("/", (ctx: any) => {
+  console.log(ctx.request.body);
   ctx.body = { name: "Lilei" };
 });
 
@@ -35,6 +37,7 @@ usersRouter.delete("/:id", (ctx) => {
   ctx.status = 204;
 });
 
+app.use(bodyParser());
 app.use(router.routes());
 app.use(usersRouter.routes());
 app.use(usersRouter.allowedMethods());
