@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon tsc && node dist/server.js",
+    "start": "nodemon tsc && node dist/src/server.js",
     "test": "jest",
     "test:unit": "ENV_FILE=./config/.env.test jest",
     "dev": "nodemon --watch 'src/**/*' -e ts,tsx --exec 'ts-node' ./src/server.ts"
@@ -16,11 +16,13 @@
     "@types/jest": "^26.0.20",
     "@types/koa": "^2.11.7",
     "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-json-error": "^3.1.2",
     "@types/koa-router": "^7.4.1",
     "@types/supertest": "^2.0.10",
     "jest": "^26.6.3",
     "koa": "^2.13.1",
     "koa-bodyparser": "^4.3.0",
+    "koa-json-error": "^3.1.2",
     "koa-router": "^10.0.0",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
