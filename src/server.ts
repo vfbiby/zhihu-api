@@ -15,16 +15,24 @@ router.get("/", (ctx: any) => {
   ctx.body = "Homepage";
 });
 
-usersRouter.get("/", auth, (ctx: any) => {
-  ctx.body = "User lists";
+usersRouter.get("/", (ctx: any) => {
+  ctx.body = [{ name: "Lilei" }, { name: "Hanmeimei" }];
 });
 
-usersRouter.post("/", auth, (ctx: any) => {
-  ctx.body = "Create user";
+usersRouter.post("/", (ctx: any) => {
+  ctx.body = { name: "Lilei" };
 });
 
-usersRouter.get("/:id", auth, (ctx) => {
-  ctx.body = `This is user ${ctx.params.id}`;
+usersRouter.get("/:id", (ctx) => {
+  ctx.body = { name: "Lilei" };
+});
+
+usersRouter.put("/:id", (ctx) => {
+  ctx.body = { name: "Lilei2" };
+});
+
+usersRouter.delete("/:id", (ctx) => {
+  ctx.status = 204;
 });
 
 app.use(router.routes());
