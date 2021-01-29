@@ -1,10 +1,6 @@
-import Koa from "koa";
-import bodyParser from "koa-bodyparser";
-import registerRouters from "./Routers/IndexRouter";
+import app from "./app";
 
-const app = new Koa();
+const port = process.env.PORT || 3000;
+app.listen(port);
 
-app.use(bodyParser());
-registerRouters(app);
-
-app.listen(3333, () => console.log("port: 3333"));
+console.log(`Listening to http://localhost:${port}`);
