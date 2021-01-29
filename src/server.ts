@@ -1,6 +1,6 @@
 import Koa from "koa";
 import bodyParser from "koa-bodyparser";
-import registerRouters from "./routers";
+import registerRouters from "./Routers/IndexRouter";
 
 const app = new Koa();
 

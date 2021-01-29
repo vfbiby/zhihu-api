@@ -1,6 +1,6 @@
 import Router from "koa-router";
 const router = new Router();
-import HomeController from "../controllers/HomeController";
+import HomeController from "../Controllers/HomeController";
 
 router.get("/", HomeController.index);
 
