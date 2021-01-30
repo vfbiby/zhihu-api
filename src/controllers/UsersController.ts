@@ -61,8 +61,8 @@ class UsersController {
     }
     const { name, _id } = user;
     const { secret } = config;
-    const token = jsonwebtoken.sign({ _id, name }, secret);
-    ctx.body = token;
+    const token = jsonwebtoken.sign({ _id, name }, secret, { expiresIn: '1d' });
+    ctx.body = { token };
   }
 }
 
