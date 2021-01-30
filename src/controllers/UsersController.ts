@@ -8,6 +8,10 @@ class UsersController {
   }
 
   create(ctx: Koa.Context) {
+    ctx.verifyParams({
+      name: { type: "string", required: true },
+      age: { type: "number", required: false },
+    });
     db.push(ctx.request.body);
     ctx.body = ctx.request.body;
   }

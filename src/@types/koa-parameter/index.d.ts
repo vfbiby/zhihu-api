@@ -1,5 +1,19 @@
-/// <reference types="node" />
-
 declare module "koa-parameter" {
-  export default function parameter(app: any, translate?: any): any;
+  //import * as Koa from "koa";
+
+  //declare function verifyParam(ctx: Koa.Context, next: Koa.Next): void;
+
+  //declare interface IRulesObject {
+  //[key: string]: any;
+  //}
+
+  //declare module "koa" {
+  //interface Context {
+  //verifyParams: (rules: any, params?: any) => any;
+  //}
+  //}
+  export default function parameter(
+    app: Koa,
+    translate?: Function
+  ): Koa.Middleware;
 }
