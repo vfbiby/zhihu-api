@@ -11,6 +11,9 @@ class UsersController {
       name: { type: 'string', required: true },
       password: { type: 'string', required: true },
     });
+    const { name } = ctx.request.body;
+    const existsUser = await User.findOne({ name });
+    existsUser && ctx.throw(409, 'User exists!');
     const user = await new User(ctx.request.body).save();
     ctx.body = user;
   }
