@@ -56,16 +56,13 @@ class UsersController {
       password: { type: 'string', required: true },
     });
     const user = await User.findOne(ctx.request.body);
-    !user && ctx.throw(401, 'Username or password is wrong!');
-
-    if (user && 'name' in user) {
-      let { name, _id } = user;
-      const { secret } = config;
-      const token = jsonwebtoken.sign({ _id, name }, secret);
-      ctx.body = token;
-    } else {
-      ctx.body = 'Some error!';
+    if (!user) {
+      ctx.throw(401, 'Username or password is wrong!');
     }
+    const { name, _id } = user;
+    const { secret } = config;
+    const token = jsonwebtoken.sign({ _id, name }, secret);
+    ctx.body = token;
   }
 }
 
