@@ -1,32 +1,43 @@
 import Koa from "koa";
-
-const db = [{ name: "Leilei" }];
+import User from "../Models/User";
 
 class UsersController {
-  index(ctx: Koa.Context) {
-    ctx.body = db;
+  async index(ctx: Koa.Context) {
+    ctx.body = await User.find();
   }
 
-  create(ctx: Koa.Context) {
+  async create(ctx: Koa.Context) {
     ctx.verifyParams({
       name: { type: "string", required: true },
-      age: { type: "number", required: false },
     });
-    db.push(ctx.request.body);
-    ctx.body = ctx.request.body;
+    const user = await new User(ctx.request.body).save();
+    ctx.body = user;
   }
 
-  read(ctx: Koa.Context) {
-    ctx.body = db[Number(ctx.params.id)];
+  async read(ctx: Koa.Context) {
+    const user = await User.findById(ctx.params.id);
+    if (!user) {
+      ctx.throw(404, "user is not exists!");
+    }
+    ctx.body = user;
   }
 
-  update(ctx: Koa.Context) {
-    db[Number(ctx.params.id)] = ctx.request.body;
-    ctx.body = ctx.request.body;
+  async update(ctx: Koa.Context) {
+    ctx.verifyParams({
+      name: { type: "string", required: true },
+    });
+    const user = await User.findByIdAndUpdate(ctx.params.id, ctx.request.body);
+    if (!user) {
+      ctx.throw(404, "user is not exists!");
+    }
+    ctx.body = user;
   }
 
-  destroy(ctx: Koa.Context) {
-    db.splice(Number(ctx.params.id), 1);
+  async destroy(ctx: Koa.Context) {
+    const user = await User.findByIdAndRemove(ctx.params.id);
+    if (!user) {
+      ctx.throw(404, "user is not exists!");
+    }
     ctx.status = 204;
   }
 }
