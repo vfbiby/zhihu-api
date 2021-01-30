@@ -1,5 +1,9 @@
 import Koa from 'koa';
 import User from '../Models/User';
+import jsonwebtoken from 'jsonwebtoken';
+import config from '../config';
+import { IUserModel } from '../Models/User';
+import mongoose from 'mongoose';
 
 class UsersController {
   async index(ctx: Koa.Context) {
@@ -44,6 +48,24 @@ class UsersController {
       ctx.throw(404, 'user is not exists!');
     }
     ctx.status = 204;
+  }
+
+  async login(ctx: Koa.Context) {
+    ctx.verifyParams({
+      name: { type: 'string', required: true },
+      password: { type: 'string', required: true },
+    });
+    const user = await User.findOne(ctx.request.body);
+    !user && ctx.throw(401, 'Username or password is wrong!');
+
+    if (user && 'name' in user) {
+      let { name, _id } = user;
+      const { secret } = config;
+      const token = jsonwebtoken.sign({ _id, name }, secret);
+      ctx.body = token;
+    } else {
+      ctx.body = 'Some error!';
+    }
   }
 }
 

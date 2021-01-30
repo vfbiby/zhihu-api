@@ -1,4 +1,4 @@
-import mongoose, { model } from "mongoose";
+import mongoose, { model } from 'mongoose';
 
 const { Schema } = mongoose;
 
@@ -8,4 +8,4 @@ const userSchema = new Schema({
   __v: { type: Number, select: false },
 });
 
-export default model("User", userSchema);
+export default model('User', userSchema);
