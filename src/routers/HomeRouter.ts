@@ -2,6 +2,9 @@ import Router from "koa-router";
 const router = new Router();
 import HomeController from "../Controllers/HomeController";
 
-router.get("/", HomeController.index);
+const { index, upload } = HomeController;
+
+router.get("/", index);
+router.post("/upload", upload);
 
 module.exports = router;
