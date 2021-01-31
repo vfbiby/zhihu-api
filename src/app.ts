@@ -3,7 +3,7 @@ import koaBody from 'koa-body';
 import registerRouters from './Routers/IndexRouter';
 import error from 'koa-json-error';
 import parameter from 'koa-parameter';
-import path from "path";
+import path from 'path';
 import mongoose from 'mongoose';
 import config from './config';
 
@@ -29,6 +29,7 @@ app.use(
     multipart: true,
     formidable: {
       uploadDir: path.join(__dirname, '../public/uploads/'),
+      keepExtensions: true,
     },
   })
 );
