@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import { File } from 'formidable';
+import path from "path";
 
 class HomeController {
   index(ctx: Koa.Context) {
@@ -7,7 +8,8 @@ class HomeController {
   }
   upload(ctx: Koa.Context) {
     const file = ctx.request.files?.file as File;
-    ctx.body = { path: file.path };
+    const basename = path.basename(file.path);
+    ctx.body = { path: `${ctx.origin}/uploads/${basename}` };
   }
 }
 

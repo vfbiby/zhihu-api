@@ -5,6 +5,7 @@ import error from 'koa-json-error';
 import parameter from 'koa-parameter';
 import path from 'path';
 import mongoose from 'mongoose';
+import koaStatic from "koa-static";
 import config from './config';
 
 const app = new Koa();
@@ -18,6 +19,7 @@ mongoose.connect(
 );
 mongoose.connection.on('error', console.error);
 
+app.use(koaStatic(path.join(__dirname, '../public')))
 app.use(
   error({
     postFormat: (_, { stack, ...rest }) =>
