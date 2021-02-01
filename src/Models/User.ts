@@ -1,9 +1,40 @@
 import { model, Schema, Document } from 'mongoose';
 
+enum Gender {
+  MALE = 'male',
+  FEMALE = 'female',
+}
+
+enum Diploma {
+  SENIOR = 1,
+  JUNIOR,
+  REGULAR,
+  MASTER,
+  DOCTOR,
+}
+
+interface IEmployment{
+  company: string;
+  job: string;
+}
+
+interface IEducation {
+  school: string;
+  major: string;
+  diploma: Diploma;
+  entrance_year: number;
+  graduation_year: number;
+}
+
 export interface IUserModel extends Document {
   name: string;
   password: string;
   avatar_url: string;
+  gender: Gender;
+  headline: string;
+  locations: [ string ];
+  employments: [ IEmployment ];
+  educations: [ IEducation ]
 }
 
 const userSchema = new Schema({
