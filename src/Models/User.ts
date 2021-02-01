@@ -13,7 +13,7 @@ enum Diploma {
   DOCTOR,
 }
 
-interface IEmployment{
+interface IEmployment {
   company: string;
   job: string;
 }
@@ -32,9 +32,9 @@ export interface IUserModel extends Document {
   avatar_url: string;
   gender: Gender;
   headline: string;
-  locations: [ string ];
-  employments: [ IEmployment ];
-  educations: [ IEducation ]
+  locations: [string];
+  employments: [IEmployment];
+  educations: [IEducation];
 }
 
 const userSchema = new Schema({
@@ -49,8 +49,8 @@ const userSchema = new Schema({
     required: true,
   },
   headline: { type: String },
-  locations: { type: [{ type: String }] },
-  business: { type: String },
+  locations: { type: [{ type: String }], select: false },
+  business: { type: String, select: false },
   employments: {
     type: [
       {
@@ -58,6 +58,7 @@ const userSchema = new Schema({
         job: { type: String },
       },
     ],
+    select: false,
   },
   educations: {
     type: [
@@ -69,6 +70,7 @@ const userSchema = new Schema({
         graduation_year: { type: Number },
       },
     ],
+    select: false,
   },
 });
 
