@@ -77,6 +77,24 @@ class UsersController {
     const token = jsonwebtoken.sign({ _id, name }, secret, { expiresIn: '1d' });
     ctx.body = { token };
   }
+
+  async listFollowing(ctx: Koa.Context) {
+    const user = await User.findById(ctx.params.id)
+      .select('+following')
+      .populate('following');
+    if (!user) {
+      ctx.throw(404);
+    }
+    ctx.body = user.following;
+  }
+  async follow(ctx: Koa.Context) {
+    const me = await User.findById(ctx.params.id).select('+following');
+    if (!me?.following.map((id) => id.toString()).includes(ctx.params.id)) {
+      me?.following.push(ctx.params.id);
+      me?.save();
+    }
+    ctx.status = 204;
+  }
 }
 
 export default new UsersController();

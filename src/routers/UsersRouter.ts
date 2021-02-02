@@ -5,7 +5,16 @@ import jwt from 'koa-jwt';
 import config from '../config';
 
 const router = new Router({ prefix: '/users' });
-const { index, create, read, update, destroy, login } = UsersController;
+const {
+  index,
+  create,
+  read,
+  update,
+  destroy,
+  login,
+  listFollowing,
+  follow,
+} = UsersController;
 const { secret } = config;
 const auth = jwt({ secret });
 
@@ -22,5 +31,7 @@ router.get('/:id', read);
 router.patch('/:id', auth, checkOwner, update);
 router.delete('/:id', auth, checkOwner, destroy);
 router.post('/login', login);
+router.get('/:id/following', listFollowing);
+router.put('/following/:id', auth, follow);
 
 module.exports = router;

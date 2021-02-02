@@ -1,4 +1,4 @@
-import { model, Schema, Document } from 'mongoose';
+import { model, Schema, Document, Types } from 'mongoose';
 
 enum Gender {
   MALE = 'male',
@@ -35,6 +35,7 @@ export interface IUserModel extends Document {
   locations: [string];
   employments: [IEmployment];
   educations: [IEducation];
+  following: [ Types.ObjectId ];
 }
 
 const userSchema = new Schema({
