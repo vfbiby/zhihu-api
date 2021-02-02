@@ -2,8 +2,6 @@ import Koa from 'koa';
 import User from '../Models/User';
 import jsonwebtoken from 'jsonwebtoken';
 import config from '../config';
-import { IUserModel } from '../Models/User';
-import mongoose from 'mongoose';
 
 class UsersController {
   async index(ctx: Koa.Context) {
@@ -89,8 +87,7 @@ class UsersController {
   }
 
   async follow(ctx: Koa.Context) {
-    console.log(ctx.state._id);
-    const me = await User.findById(ctx.state._id).select('+following');
+    const me = await User.findById(ctx.state.user._id).select('+following');
     if (!me?.following.map((id) => id.toString()).includes(ctx.params.id)) {
       me?.following.push(ctx.params.id);
       me?.save();
@@ -99,9 +96,11 @@ class UsersController {
   }
 
   async unfollow(ctx: Koa.Context) {
-    const me = await User.findById(ctx.state._id).select('+following');
-    const index = me?.following.map(id => id.toString()).indexOf(ctx.params.id);
-    if ( index && index > -1 ) {
+    const me = await User.findById(ctx.state.user._id).select('+following');
+    const index = me?.following
+      .map((id) => id.toString())
+      .indexOf(ctx.params.id);
+    if ( index !== undefined && index > -1) {
       me?.following.splice(index, 1);
       me?.save();
     }
