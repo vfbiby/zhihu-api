@@ -14,6 +14,7 @@ const {
   login,
   listFollowing,
   follow,
+  unfollow,
 } = UsersController;
 const { secret } = config;
 const auth = jwt({ secret });
@@ -33,5 +34,6 @@ router.delete('/:id', auth, checkOwner, destroy);
 router.post('/login', login);
 router.get('/:id/following', listFollowing);
 router.put('/following/:id', auth, follow);
+router.delete('/following/:id', auth, unfollow);
 
 module.exports = router;

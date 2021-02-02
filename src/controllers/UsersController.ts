@@ -87,10 +87,22 @@ class UsersController {
     }
     ctx.body = user.following;
   }
+
   async follow(ctx: Koa.Context) {
-    const me = await User.findById(ctx.params.id).select('+following');
+    console.log(ctx.state._id);
+    const me = await User.findById(ctx.state._id).select('+following');
     if (!me?.following.map((id) => id.toString()).includes(ctx.params.id)) {
       me?.following.push(ctx.params.id);
+      me?.save();
+    }
+    ctx.status = 204;
+  }
+
+  async unfollow(ctx: Koa.Context) {
+    const me = await User.findById(ctx.state._id).select('+following');
+    const index = me?.following.map(id => id.toString()).indexOf(ctx.params.id);
+    if ( index && index > -1 ) {
+      me?.following.splice(index, 1);
       me?.save();
     }
     ctx.status = 204;
