@@ -72,6 +72,10 @@ const userSchema = new Schema({
     ],
     select: false,
   },
+  following: {
+    type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    select: false,
+  },
 });
 
 export default model<IUserModel>('User', userSchema);
