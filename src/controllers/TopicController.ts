@@ -7,7 +7,7 @@ class TopicController {
   }
 
   async read(ctx: Koa.Context) {
-    const { fields }: { fields: string } = ctx.query;
+    const { fields = '' }: { fields: string } = ctx.query;
     const selectedFields = fields
       .split(';')
       .filter((f) => f)
