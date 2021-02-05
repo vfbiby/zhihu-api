@@ -5,7 +5,12 @@ import config from '../config';
 
 class UsersController {
   async index(ctx: Koa.Context) {
-    ctx.body = await User.find();
+    const { per_page = 10 } = ctx.query;
+    const page = Math.max(ctx.query.page * 1, 1) - 1;
+    const perPage = Math.max(per_page * 1, 1);
+    ctx.body = await User.find()
+      .limit(perPage)
+      .skip(page * perPage);
   }
 
   async create(ctx: Koa.Context) {
@@ -100,7 +105,7 @@ class UsersController {
     const index = me?.following
       .map((id) => id.toString())
       .indexOf(ctx.params.id);
-    if ( index !== undefined && index > -1) {
+    if (index !== undefined && index > -1) {
       me?.following.splice(index, 1);
       me?.save();
     }
