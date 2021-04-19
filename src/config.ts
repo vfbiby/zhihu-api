@@ -5,7 +5,7 @@ interface IConfigProps {
 
 const config: IConfigProps = {
   connectionUrl:
-    'mongodb+srv://vfbiby:123456ab@zhihu.mmnhw.mongodb.net/zhihu?retryWrites=true&w=majority',
+    'mongodb://localhost:27017/zhihu',
   secret: 'zhihu-jwt-api-secret',
 };
 
